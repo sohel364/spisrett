@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CHILD -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	
+    android:paddingTop="0dip" 
+    android:orientation="horizontal"
+     
+   > <!--   android:background="@drawable/bar_bg" -->
+    
+
+        <ImageView
+          android:id="@+id/image"
+          android:layout_width="30dip"
+          android:layout_height="30dip" 
+          android:layout_marginLeft="30dip"/>
+       
+            <TextView
+                android:id="@+id/textProductTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="30dip"
+                android:layout_weight="1"
+                android:text="Detail"
+                android:textColor="#F0F0F0" />
+
+</LinearLayout>

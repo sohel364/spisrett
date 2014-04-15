@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spisrett</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="String">Spisrett</string>
+    <string name="title_activity_spisrett_home">SpisrettHome</string>
+    <string name="title_activity_test_navigation">TestNavigation</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="search">search</string>
+    <string name="title_activity_test_navigation_dropdown">TestNavigationDropdown</string>
+    <string name="title_activity_product_detail">ProductDetailActivity</string>
+    <string name="title_activity_search_reasult">SearchReasult</string>
+
+</resources>

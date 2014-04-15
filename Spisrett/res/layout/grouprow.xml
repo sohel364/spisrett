@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PARENT -->
+ 
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1" android:paddingTop="0dip" android:layout_gravity="top">
+  <TableRow
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/textlines"  >
+       <ImageView
+          android:id="@+id/image_cat"
+          android:background="@drawable/heart"
+          android:layout_width="30dip"
+          android:layout_height="30dip" 
+          android:layout_gravity="left"
+          android:layout_marginLeft="30dip"/>     
+       <TextView
+              android:id="@+id/text_category"
+              android:layout_height="fill_parent"
+              android:layout_width="fill_parent"
+              android:layout_gravity="left|center_horizontal"
+              android:textSize="15sp" 
+              android:textStyle="bold"
+              android:text="Category"/>
+         <ImageView
+          android:id="@+id/rightnav"
+          android:background="@drawable/arrow_right"
+          android:layout_gravity="right"/>
+  </TableRow>
+</TableLayout>
