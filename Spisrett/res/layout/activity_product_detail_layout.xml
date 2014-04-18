@@ -79,21 +79,22 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         >
-        <TextView 
+
+        <TextView
             android:id="@+id/product_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="20dp"
             android:text="Product Title"
-        />
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
         <TextView 
             android:id="@+id/product_sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:text="Product Sub-Title"
-            
+            android:textSize="10sp"
         />
   		<LinearLayout 
   		    android:layout_width="wrap_content"
@@ -405,8 +406,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout3"
-        android:background="#FFFFFF"
-
+        android:background="@drawable/background"
         android:orientation="vertical" >
         
         <LinearLayout 
@@ -415,21 +415,38 @@
        	 android:layout_height="wrap_content"
        	 android:layout_marginTop="10dp"
          >
-        <Button 
-            android:id="@+id/tab_button1"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:background="@color/tab1"
-            android:text="Naeringsinnhold"
-         />
+
+        <Button
+android:id="@+id/tab_button1"
+
+android:text="Naeringsinnhold"
+android:textColor="#AFB1BB"
+android:textSize="15sp"
+android:layout_width="150dp"
+android:layout_height="29dp"
+android:background="@drawable/btnshape"
+android:shadowColor="#A8A8A8"
+android:shadowDx="0"
+android:shadowDy="0"
+
+/>
         
-        <Button 
-            android:id="@+id/tab_button2"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:background="@color/tab2"
-            android:text="Viste du at?"
-         />
+        <Button
+android:id="@+id/tab_button2"
+
+android:text="Viste du at?"
+android:textColor="#AFB1BB"
+android:textSize="15sp"
+android:layout_width="150dp"
+android:layout_height="29dp"
+android:background="@drawable/btnshape1"
+android:shadowColor="#A8A8A8"
+android:shadowDx="0"
+android:shadowDy="0"
+
+/>
+        
+
         </LinearLayout>
         
         <LinearLayout
@@ -438,12 +455,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+          
             android:layout_below ="@+id/linear_tab"
              >
 			<LinearLayout 
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:orientation="horizontal"   
+			    android:orientation="horizontal"
+			    android:layout_marginTop="10dp"  
 			    >
 			   <ImageView 
 			       android:layout_width="wrap_content"
@@ -455,6 +474,7 @@
                 android:id="@+id/tab_text"
                 android:layout_width="274dp"
                 android:layout_height="fill_parent"
+                android:textColor="#272F2B"
                 android:text="This Product is minimally processed" />
 			</LinearLayout>
 			
@@ -473,6 +493,7 @@
                 android:id="@+id/tab_text"
                 android:layout_width="274dp"
                 android:layout_height="fill_parent"
+                android:textColor="#272F2B"
                 android:text="Know about vitamin D,milk and you" />
 			</LinearLayout>
         </LinearLayout>
