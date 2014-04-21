@@ -413,7 +413,7 @@
          android:id="@+id/linear_tab"
          android:layout_width="match_parent"
        	 android:layout_height="wrap_content"
-       	 android:layout_marginTop="10dp"
+       	 android:layout_marginTop="5dp"
          >
 
         <Button
@@ -454,14 +454,16 @@ android:shadowDy="0"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-          
             android:layout_below ="@+id/linear_tab"
              >
 			<LinearLayout 
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:orientation="horizontal"
+			    android:scrollbars="vertical"
 			    android:layout_marginTop="10dp"  
 			    >
 			   <ImageView 
@@ -470,11 +472,13 @@ android:shadowDy="0"
 			       android:src="@drawable/arrow_round_yellow"
 			       />
 			
+  
             <TextView
                 android:id="@+id/tab_text"
                 android:layout_width="274dp"
                 android:layout_height="fill_parent"
-                android:textColor="#272F2B"
+                android:textColor="#212A25"
+                android:gravity="left"
                 android:text="This Product is minimally processed" />
 			</LinearLayout>
 			
@@ -482,6 +486,7 @@ android:shadowDy="0"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:orientation="horizontal"   
+			     android:gravity="center_horizontal"
 			    >
 			   <ImageView 
 			       android:layout_width="wrap_content"
@@ -493,7 +498,8 @@ android:shadowDy="0"
                 android:id="@+id/tab_text"
                 android:layout_width="274dp"
                 android:layout_height="fill_parent"
-                android:textColor="#272F2B"
+                android:textColor="#212A25"
+                android:gravity="left"
                 android:text="Know about vitamin D,milk and you" />
 			</LinearLayout>
         </LinearLayout>

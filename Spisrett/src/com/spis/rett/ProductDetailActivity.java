@@ -5,12 +5,15 @@ import com.spis.rett.model.Product;
 
 import android.R.animator;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,8 +21,10 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+@SuppressLint("ResourceAsColor")
 public class ProductDetailActivity extends Activity {
 
 	Product product;
@@ -87,6 +92,12 @@ public class ProductDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				
+				RelativeLayout rvLa =(RelativeLayout)findViewById(R.id.relativelayout4);
+			
+				rvLa.setBackgroundColor(0xFFFFFFFF);
+		
+				
 				Log.i("xZing","1 clicked");
 				if(product==null)
 					return;
@@ -99,7 +110,10 @@ public class ProductDetailActivity extends Activity {
 				
 				textView.setLayoutParams(layoutParamsText);
 				textView.setText("Categoty : "+ product.getProductCategory() );
+				textView.setGravity(Gravity.LEFT);
+				textView.setPadding(0, 0, 200, 0);
 				linearLayoutProductDetail.addView(textView);
+				
 				Log.i("xZing","here2");
 				ImageView imageView=new ImageView(getApplicationContext());
 				imageView.setLayoutParams(layoutParamsImage);
@@ -114,6 +128,7 @@ public class ProductDetailActivity extends Activity {
 					textView.setLayoutParams(layoutParamsText);
 					textView.setText("No Nutrition Info Found.");
 					linearLayoutProductDetail.addView(textView);
+					
 					return;
 				}
 				String[] nutritionName=nInfo.getNutritionNames();
@@ -129,12 +144,16 @@ public class ProductDetailActivity extends Activity {
 					textView=new TextView(getApplicationContext());
 					
 					textView.setLayoutParams(layoutParamsText);
-					textView.setText(nutritionName[i]+"         "+nutritionAmount[i] );
+					textView.setText(nutritionName[i]+"                   "+nutritionAmount[i] );
+					textView.setGravity(Gravity.LEFT);
 					linearLayoutProductDetail.addView(textView);
 					
 					imageView=new ImageView(getApplicationContext());
 					imageView.setLayoutParams(layoutParamsImageIn);
+					
 					imageView.setImageResource(R.color.gray);
+					
+					imageView.getLayoutParams().width = 300;
 					linearLayoutProductDetail.addView(imageView);
 				}
 				
