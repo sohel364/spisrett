@@ -20,32 +20,31 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal" >
 
-        <LinearLayout
+<RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal" >
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+	        android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            >
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-				android:layout_marginLeft="20dp"
-				
+				android:layout_alignParentLeft="true"
                 android:src="@drawable/logo_spisrett_inner" />
 
             <ImageButton
                 android:id="@+id/image_button1"
                 android:layout_width="80dp"
                 android:layout_height="32dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="100dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
                 android:background="@drawable/btn_search"
-                android:gravity="right" />
+                />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
     
@@ -69,7 +68,7 @@
         <ExpandableListView
             android:id="@+id/search_result"
             android:layout_width="wrap_content"
-            android:layout_height="350dp" >
+            android:layout_height="380dp" >
 
         </ExpandableListView>
         
@@ -94,11 +93,9 @@
 	
 	<ImageView 
         android:id="@+id/imageview_ad_close"
-        android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:src="@drawable/arrow_close"
-	    
-        />
+        android:layout_width="fill_parent"
+	    android:layout_height="10dp"
+	    android:src="@drawable/arrow_down"/>
 
 	<ImageView
 	    android:id="@+id/image_bottom_ad"

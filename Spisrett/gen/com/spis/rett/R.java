@@ -81,17 +81,17 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f090026;
-        public static final int btnBrows=0x7f09001a;
-        public static final int editTextCode=0x7f09001c;
+        public static final int btnBrows=0x7f09001d;
+        public static final int editTextCode=0x7f09001b;
         public static final int image=0x7f090021;
         public static final int imageView1=0x7f09001e;
         public static final int image_bottom_ad=0x7f090016;
         public static final int image_button1=0x7f090002;
-        public static final int image_button2=0x7f09001b;
+        public static final int image_button2=0x7f09001a;
         public static final int image_cat=0x7f090023;
         public static final int image_dynamic_log=0x7f090017;
         public static final int imageview_ad_close=0x7f090015;
-        public static final int img_butt_search_text=0x7f09001d;
+        public static final int img_butt_search_text=0x7f09001c;
         public static final int linearLayout1=0x7f090001;
         public static final int linearLayout2=0x7f090004;
         public static final int linearLayout3=0x7f090009;

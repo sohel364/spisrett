@@ -9,6 +9,8 @@ import com.spis.rett.model.Product;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -67,9 +69,10 @@ public class SpisrettHome extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
+					
 				String keyWord=((EditText)findViewById(R.id.editTextCode)).getText().toString();
 				
+				if(!keyWord.isEmpty()){
 				Log.i("xZing","code "+keyWord);
 				
 //				DatabaseManager databaseManager=new DatabaseManager(getApplication());
@@ -87,7 +90,9 @@ public class SpisrettHome extends Activity {
 //				Intent productDeatailIntent=new Intent(getApplicationContext(), ProductDetailActivity.class);
 //				productDeatailIntent.putExtra("PRODUCT_CODE", keyWord);
 //				startActivity(productDeatailIntent);
+				}
 				
+
 			}
 		});
   		
