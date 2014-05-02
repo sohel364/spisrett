@@ -30,6 +30,7 @@
             >
 
             <ImageView
+                android:id="@+id/logo_spisrett_home_search_result"
                 android:layout_width="120dp"
                 android:layout_height="fill_parent"
 				android:layout_alignParentLeft="true"
@@ -68,7 +69,9 @@
         <ExpandableListView
             android:id="@+id/search_result"
             android:layout_width="wrap_content"
-            android:layout_height="380dp" >
+            android:layout_height="380dp" 
+            
+            >
 
         </ExpandableListView>
         

@@ -100,6 +100,7 @@ public class ProductDetailActivity extends Activity {
 				Log.i("xZing","1 clicked");
 				if(product==null)
 					return;
+				((LinearLayout)findViewById(R.id.linearlayout_ad_container)).setVisibility(View.GONE);
 				LayoutParams layoutParamsText=new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 				LayoutParams layoutParamsImage=new LayoutParams(LayoutParams.FILL_PARENT, 2);
 				LayoutParams layoutParamsImageIn=new LayoutParams(150, 2);
@@ -168,6 +169,7 @@ public class ProductDetailActivity extends Activity {
 					Log.i("xZing","2 clicked "+didYouKnowString);
 					if(product==null)
 						return;
+					((LinearLayout)findViewById(R.id.linearlayout_ad_container)).setVisibility(View.GONE);
 					linearLayoutProductDetail.removeAllViews();
 					LayoutParams layoutParamsText=new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 					TextView textView=new TextView(getApplicationContext());
@@ -190,11 +192,22 @@ public class ProductDetailActivity extends Activity {
 				
 				((LinearLayout)findViewById(R.id.linearlayout_ad_container)).setVisibility(View.GONE);
 				
-				ImageView imgLog=(ImageView)findViewById(R.id.image_dynamic_log);
-				imgLog.setVisibility(View.VISIBLE);
+//				ImageView imgLog=(ImageView)findViewById(R.id.image_dynamic_log);
+//				imgLog.setVisibility(View.VISIBLE);
 				
 			}
 		});
+		
+		((ImageView)findViewById(R.id.logo_spisrett_home_product_detail)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent homeIntent=new Intent(getApplicationContext(), SpisrettHome.class);
+				homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(homeIntent);
+			}
+		});
+		
 	}
 	
 	@Override

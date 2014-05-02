@@ -92,6 +92,16 @@ public class SearchReasult  extends  Activity
 				
 			}
 		});
+  		
+  		((ImageView)findViewById(R.id.logo_spisrett_home_search_result)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent homeIntent=new Intent(getApplicationContext(), SpisrettHome.class);
+				homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(homeIntent);
+			}
+		});
         
     }
      
