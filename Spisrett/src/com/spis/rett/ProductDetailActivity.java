@@ -64,7 +64,6 @@ public class ProductDetailActivity extends Activity {
 			((TextView)findViewById(R.id.text_grade)).setText(" "+product.getProductGradeChar());
 			
 			didYouKnowString=product.getProductDidYouKnow();
-//			((TextView)findViewById(R.id.textProductCategory)).setText("Product Category :"+product.getProductCategory());
 			
 			linearLayout=(LinearLayout)findViewById(R.id.linearLayout_color_code_arrow);
 			ImageView imageArrow=(ImageView)linearLayout.getChildAt(product.getColorIndex());
@@ -205,7 +204,6 @@ public class ProductDetailActivity extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.product_detail, menu);
 		return true;
 	}

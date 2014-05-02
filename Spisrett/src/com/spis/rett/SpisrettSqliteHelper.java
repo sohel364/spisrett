@@ -12,7 +12,6 @@ public class SpisrettSqliteHelper extends SQLiteOpenHelper
 	
 	public final static String TABLE_NAME_PRODUCT="product";
 	public final static String COLUMN_PRODUCT_ID="product_id";
-//	public final static String COLUMN_PRODUCT_NAME="product_name";
 	public static final String COLUMN_PRODUCT_CATEGORY = "product_category";
 	public static final String COLUMN_PRODUCT_SUBCATEGORY = "product_sub_category";
 	public static final String COLUMN_PRODUCT_TYPE = "product_type";
@@ -33,11 +32,17 @@ public class SpisrettSqliteHelper extends SQLiteOpenHelper
 	public static final String COLUMN_PRODUCTvsNUTRITION_AMOUNT="nutrition_amount";
 	
 	
+	public static final String TABLE_NAME_USER="user";
+	public static final String COLUMN_USER_DEVICEID="device_id";
+	public static final String COLUMN_USER_NAME="user_name";
+	public static final String COLUMN_USER_PASSWORD="password";
+	public static final String COLUMN_USER_EMAIL="email";
+	public static final String COLUMN_USER_TYPE="type";
+	
+	
 	private static final String DATABASE_CREATE_TABLE_PRODUCT = "create table "+ TABLE_NAME_PRODUCT + "(" 
 			+COLUMN_PRODUCT_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , "
-//			+ COLUMN_PRODUCT_NAME
-//			+ " text  , "
 			+COLUMN_PRODUCT_CATEGORY
 			+ " text ,"
 			+COLUMN_PRODUCT_SUBCATEGORY
@@ -79,6 +84,18 @@ public class SpisrettSqliteHelper extends SQLiteOpenHelper
 			+"PRIMARY KEY (\""+COLUMN_PRODUCT_ID+"\", \""+COLUMN_NUTRITION_ID+"\")"
 			+");";
 	
+	private static final String DATABASE_CREATE_TABLE_USER= "create table "+ TABLE_NAME_USER+ "(" 
+			+COLUMN_USER_DEVICEID
+			+ " text, "
+			+COLUMN_USER_NAME
+			+ " text, "
+			+COLUMN_USER_PASSWORD
+			+ " text, "
+			+COLUMN_USER_EMAIL
+			+ " text PRIMARY KEY , "
+			+COLUMN_USER_TYPE
+			+ " INTEGER "
+			+");";
 	
 	public SpisrettSqliteHelper(Context contex)
 	{
@@ -91,10 +108,12 @@ public class SpisrettSqliteHelper extends SQLiteOpenHelper
 		db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_PRODUCT);
 		db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_NUTRITION);
 		db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_PRODUCTvsNUTRITION);
+		db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_USER);
 		
 		db.execSQL(DATABASE_CREATE_TABLE_PRODUCT);
 		db.execSQL(DATABASE_CREATE_TABLE_NUTRITION);
 		db.execSQL(DATABASE_CREATE_TABLE_PRODUCTvsNUTRITION);
+		db.execSQL(DATABASE_CREATE_TABLE_USER);
 	}
 
 	@Override

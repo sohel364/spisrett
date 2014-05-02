@@ -1,22 +1,20 @@
 package com.spis.rett;
 
 
-import java.util.ArrayList;
+
 
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.spis.rett.R.layout;
+
 import com.spis.rett.model.Product;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,9 +45,6 @@ public class SpisrettHome extends Activity {
 		imageViewAd=(ImageView)findViewById(R.id.image_bottom_ad);
 		
   		addDemoProduct("1234");
-//  		Intent productDeatailIntent=new Intent(getApplicationContext(), ProductDetailActivity.class);
-//		productDeatailIntent.putExtra("PRODUCT_CODE", "1234");
-//		startActivity(productDeatailIntent);
 		
   		imgbtSearchBarcode.setOnClickListener(new OnClickListener() {
 			
@@ -74,22 +69,11 @@ public class SpisrettHome extends Activity {
 				
 				if(!keyWord.isEmpty()){
 				Log.i("xZing","code "+keyWord);
-				
-//				DatabaseManager databaseManager=new DatabaseManager(getApplication());
-//				ArrayList<Product> productArrayList=databaseManager.categorySearch(keyWord);
-//				if(productArrayList!=null && productArrayList.size()!=0)
-//				for(Product pr:productArrayList)
-//				{
-//					Log.i("xZing",""+pr.getProductCategory()+"\n"+pr.getProductSubCategory() +"\n"+pr.getProducerName());
-//				}
-//				
+					
 				Intent productDeatailIntent=new Intent(getApplicationContext(), SearchReasult.class);
 				productDeatailIntent.putExtra("KEY_WORD",keyWord);
 				startActivity(productDeatailIntent);
-//				
-//				Intent productDeatailIntent=new Intent(getApplicationContext(), ProductDetailActivity.class);
-//				productDeatailIntent.putExtra("PRODUCT_CODE", keyWord);
-//				startActivity(productDeatailIntent);
+
 				}
 				
 
@@ -105,21 +89,11 @@ public class SpisrettHome extends Activity {
 				
 				Log.i("xZing","code "+keyWord);
 				
-//				DatabaseManager databaseManager=new DatabaseManager(getApplication());
-//				ArrayList<Product> productArrayList=databaseManager.categorySearch(keyWord);
-//				if(productArrayList!=null && productArrayList.size()!=0)
-//				for(Product pr:productArrayList)
-//				{
-//					Log.i("xZing",""+pr.getProductCategory()+"\n"+pr.getProductSubCategory() +"\n"+pr.getProducerName());
-//				}
-//				
+			
 				Intent productDeatailIntent=new Intent(getApplicationContext(), SearchReasult.class);
 				productDeatailIntent.putExtra("KEY_WORD",keyWord);
 				startActivity(productDeatailIntent);
-//				
-//				Intent productDeatailIntent=new Intent(getApplicationContext(), ProductDetailActivity.class);
-//				productDeatailIntent.putExtra("PRODUCT_CODE", keyWord);
-//				startActivity(productDeatailIntent);
+
 				
 			}
 		});
@@ -148,6 +122,14 @@ public class SpisrettHome extends Activity {
 			}
 		});
 		
+  		((Button)findViewById(R.id.registration_button)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent regIn=new Intent(getApplicationContext(), UserRegistrationActivity.class);
+				startActivity(regIn);
+			}
+		});
 	}
 	
 	

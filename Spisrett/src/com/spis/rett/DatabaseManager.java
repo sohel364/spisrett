@@ -1,9 +1,6 @@
 package com.spis.rett;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 import android.content.ContentValues;
@@ -15,6 +12,7 @@ import android.util.Log;
 
 import com.spis.rett.model.NutritionInfo;
 import com.spis.rett.model.Product;
+import com.spis.rett.model.User;
 public class DatabaseManager {
 
 	private SQLiteDatabase database;
@@ -35,7 +33,6 @@ public class DatabaseManager {
 
 	  public long addProduct(Product product) {
 	    ContentValues values = new ContentValues();
-//	    values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_NAME, productName);
 	    values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_CATEGORY,product.getProductCategory() );
 	    values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_SUBCATEGORY,product.getProductSubCategory() );
 	    values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_BRAND,product.getBrandName() );
@@ -137,7 +134,6 @@ public class DatabaseManager {
 		  
 		  NutritionInfo nutritionInfo=null;
 		  String[] allColumnsProductNutritio={SpisrettSqliteHelper.COLUMN_NUTRITION_ID,SpisrettSqliteHelper.COLUMN_PRODUCTvsNUTRITION_AMOUNT};
-		  int[] nutritionIds;
 		  double[] nutirionAmounts;
 		  String[] nutritionNames;
 		  int rowCount;
@@ -225,4 +221,20 @@ public class DatabaseManager {
 		  return products;
 	  }
 
+	  public long addUser(User user)
+	  {
+		  ContentValues values = new ContentValues();
+		    values.put(SpisrettSqliteHelper.COLUMN_USER_DEVICEID,user.getDeviceId());
+		    values.put(SpisrettSqliteHelper.COLUMN_USER_NAME,user.getUserName() );
+		    values.put(SpisrettSqliteHelper.COLUMN_USER_PASSWORD,user.getPassword() );
+		    values.put(SpisrettSqliteHelper.COLUMN_USER_EMAIL,user.getEmail() );
+		    values.put(SpisrettSqliteHelper.COLUMN_USER_TYPE,user.getUserType());
+
+		    open();
+		    
+		    long insertId =  database.insert(SpisrettSqliteHelper.TABLE_NAME_USER, null,
+		        values);
+		    close();
+		    return insertId;
+	  }
 	} 

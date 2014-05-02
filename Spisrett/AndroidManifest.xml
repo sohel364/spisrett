@@ -48,8 +48,12 @@
         </activity>
         <activity
             android:name="com.spis.rett.SearchReasult"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_search_reasult" >
+            android:label="@string/title_activity_search_reasult"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.spis.rett.UserRegistrationActivity"
+            android:label="@string/title_activity_user_registration" >
         </activity>
     </application>
 

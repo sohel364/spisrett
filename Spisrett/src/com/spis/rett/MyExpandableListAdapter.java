@@ -49,26 +49,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter
          
 
          
-        //Log.i("onCheckedChanged", "isChecked: "+parent.isChecked());
-         
-        // Change right check image on parent at runtime
-//        if(parent.isChecked()==true){
-//            rightcheck.setImageResource(context.
-//                 getResources().getIdentifier(
-//                      "com.androidexample.customexpandablelist:drawable/rightcheck",null,null));
-//        }   
-//        else{
-//            rightcheck.setImageResource(context.
-//                 getResources().getIdentifier(
-//                      "com.androidexample.customexpandablelist:drawable/button_check",null,null));
-//        }   
-         
-        // Get grouprow.xml file checkbox elements
-//        CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkbox);
-//        checkbox.setChecked(parent.isChecked());
-         
-        // Set CheckUpdateListener for CheckBox (see below CheckUpdateListener class)
-//        checkbox.setOnCheckedChangeListener(new CheckUpdateListener(parent));
+
          
         return convertView;
     }
@@ -107,7 +88,6 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public Object getChild(int groupPosition, int childPosition)
     {
-        //Log.i("Childs", groupPosition+"=  getChild =="+childPosition);
         return parents.get(groupPosition).getChildren().get(childPosition);
     }
 
@@ -117,13 +97,10 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter
     {
         /****** When Child row clicked then this function call *******/
          
-        //Log.i("Noise", "parent == "+groupPosition+"=  child : =="+childPosition);
         if( ChildClickStatus!=childPosition)
         {
            ChildClickStatus = childPosition;
             
-//           Toast.makeText(context.getApplicationContext(), "Parent :"+groupPosition + " Child :"+childPosition , 
-//                    Toast.LENGTH_LONG).show();
         }  
          
         return childPosition;
@@ -159,12 +136,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter
     {
         Log.i("Parent", groupPosition+"=  getGroupId "+ParentClickStatus);
          
-        if(groupPosition==2 && ParentClickStatus!=groupPosition){
-             
-            //Alert to user
-            //Toast.makeText(context.getApplicationContext(), "Parent :"+groupPosition , 
-                //    Toast.LENGTH_LONG).show();
-        }
+
          
         ParentClickStatus=groupPosition;
         if(ParentClickStatus==0)
@@ -203,32 +175,5 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter
     {
         return true;
     }
-     
-     
-     
-    /******************* Checkbox Checked Change Listener ********************/
-     
-//    private final class CheckUpdateListener implements OnCheckedChangeListener
-//    {
-//        private final Parent parent;
-//         
-//        private CheckUpdateListener(Parent parent)
-//        {
-//            this.parent = parent;
-//        }
-//        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-//        {
-//            Log.i("onCheckedChanged", "isChecked: "+isChecked);
-//            parent.setChecked(isChecked);
-//             
-//            ((MyExpandableListAdapter)getExpandableListAdapter()).notifyDataSetChanged();
-//             
-//            final Boolean checked = parent.isChecked();
-//            Toast.makeText(getApplicationContext(), 
-//                  "Parent : "+parent.getName() + " " + (checked ? STR_CHECKED : STR_UNCHECKED), 
-//                       Toast.LENGTH_LONG).show();
-//        }
-//    }
-    /***********************************************************************/
      
 }

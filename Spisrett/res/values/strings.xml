@@ -14,5 +14,6 @@
     <string name="title_activity_test_navigation_dropdown">TestNavigationDropdown</string>
     <string name="title_activity_product_detail">ProductDetailActivity</string>
     <string name="title_activity_search_reasult">SearchReasult</string>
+    <string name="title_activity_user_registration">User Registration</string>
 
 </resources>
