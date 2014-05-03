@@ -3,15 +3,10 @@ package com.spis.rett;
 import com.spis.rett.model.NutritionInfo;
 import com.spis.rett.model.Product;
 
-import android.R.animator;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -103,15 +98,17 @@ public class ProductDetailActivity extends Activity {
 				((LinearLayout)findViewById(R.id.linearlayout_ad_container)).setVisibility(View.GONE);
 				LayoutParams layoutParamsText=new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 				LayoutParams layoutParamsImage=new LayoutParams(LayoutParams.FILL_PARENT, 2);
-				LayoutParams layoutParamsImageIn=new LayoutParams(150, 2);
+				LayoutParams layoutParamsImageIn=new LayoutParams(LayoutParams.FILL_PARENT, 2);
 				linearLayoutProductDetail.removeAllViews();
 				Log.i("xZing","here1");
 				TextView textView=new TextView(getApplicationContext());
 				
+				
 				textView.setLayoutParams(layoutParamsText);
 				textView.setText("Categoty : "+ product.getProductCategory() );
 				textView.setGravity(Gravity.LEFT);
-				textView.setPadding(0, 0, 200, 0);
+				textView.setPadding(0, 30, 0, 0);
+				textView.setTextColor(getResources().getColor(android.R.color.black));
 				linearLayoutProductDetail.addView(textView);
 				
 				Log.i("xZing","here2");
@@ -138,22 +135,36 @@ public class ProductDetailActivity extends Activity {
 				{
 					return;
 				}
+				LinearLayout insideLinearLayout;
+				LayoutParams layoutParamsInsideLinear=new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 				for(int i=0;i<nutritionName.length;i++)
 				{
+					insideLinearLayout=new LinearLayout(getApplicationContext());
+					insideLinearLayout.setLayoutParams(layoutParamsInsideLinear);
+					insideLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+					insideLinearLayout.setPadding(150, 20, 100, 0);
+					textView=new TextView(getApplicationContext());
+					textView.setLayoutParams(layoutParamsText);
+					textView.setText(nutritionName[i] );
+					textView.setTextColor(getResources().getColor(android.R.color.black));
+					textView.setGravity(Gravity.LEFT);
+					insideLinearLayout.addView(textView);
 					
 					textView=new TextView(getApplicationContext());
+					textView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,2f));
+					textView.setText(""+nutritionAmount[i] );
+					textView.setTextColor(getResources().getColor(android.R.color.black));
+					textView.setGravity(Gravity.RIGHT);
+					insideLinearLayout.addView(textView);
 					
-					textView.setLayoutParams(layoutParamsText);
-					textView.setText(nutritionName[i]+"                   "+nutritionAmount[i] );
-					textView.setGravity(Gravity.LEFT);
-					linearLayoutProductDetail.addView(textView);
+					linearLayoutProductDetail.addView(insideLinearLayout);
 					
 					imageView=new ImageView(getApplicationContext());
 					imageView.setLayoutParams(layoutParamsImageIn);
+					imageView.setPadding(150, 0, 20, 0);
+					imageView.setImageResource(R.color.nutrifacts_bar);
 					
-					imageView.setImageResource(R.color.gray);
-					
-					imageView.getLayoutParams().width = 300;
+//					imageView.getLayoutParams().width = 300;
 					linearLayoutProductDetail.addView(imageView);
 				}
 				
