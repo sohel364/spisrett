@@ -33,8 +33,7 @@
 	    android:layout_height="wrap_content" 
 	    android:textColor="@color/color_button_green"
 	    android:textSize="20sp"
-	    
-	    android:text="@string/text_registration_title"
+	    android:text="@string/text_wellcome"
        />   
         
     <LinearLayout
@@ -51,7 +50,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_marginTop ="1dp"
-	            android:hint="@string/text_enter_email"
+	            android:hint="@string/text_user_name"
 	             />
 	        
 	        <EditText
@@ -62,23 +61,22 @@
 	            android:hint="@string/text_password"
 	            />
 	        
-	        <EditText
-	            android:background="@drawable/shape_oval"
-	            android:layout_width="@dimen/dimen_registration_layout"
-	            android:layout_height="wrap_content" 
-	            android:layout_marginTop ="1dp"
-	            android:hint="@string/text_confirm_passwor"
-	            />
-	        
 	        <Button
-	            android:id="@+id/registration_button"
+	            android:id="@+id/login_button"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_height="30dp"
 	            android:background="@color/color_button_green"
 	            android:layout_marginTop="10dp"
-	            android:text="@string/text_create"
+	            android:text="@string/text_login"
 	             />
 
+	         <TextView 
+	            android:layout_width="@dimen/dimen_registration_layout"
+	            android:layout_height="wrap_content"
+	            android:text="@string/text_forgot_password"
+	            android:gravity="center"
+	            />
+	         
 	        <ImageView 
 	            android:layout_width="fill_parent"
 	            android:src="@drawable/thin_white_line"
@@ -86,20 +84,15 @@
 	             android:paddingBottom="10dp"
 	            android:layout_height="wrap_content"
 	            />
-	        <TextView 
-	            android:layout_width="@dimen/dimen_registration_layout"
-	            android:layout_height="wrap_content"
-	            android:text="@string/text_alerady_have_acount"
-	            android:gravity="center"
-	            />
+	       
 	        
 	        <Button 
-	            android:id="@+id/login_button_from_reg"
+	            android:id="@+id/registration_button_from_login"
 	            android:background="@color/color_button_red"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_height="30dp"
 	             android:layout_marginTop="10dp" 
-	             android:text="@string/text_login"
+	             android:text="@string/text_create_acount"
 	            />
 	        
 	    </LinearLayout> 

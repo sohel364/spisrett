@@ -15,5 +15,17 @@
     <string name="title_activity_product_detail">ProductDetailActivity</string>
     <string name="title_activity_search_reasult">SearchReasult</string>
     <string name="title_activity_user_registration">User Registration</string>
+    <string name="text_wellcome">Velkommen</string>
+    <string name="text_user_name">Brukernavn (din epost adresse) </string>
+    <string name="text_password">Passord</string>
+    <string name="text_forgot_password">Glemt passord?</string>
+    <string name="text_create_acount">Opprett din spisrett konto</string>
+    <string name="text_registration_title">Opprett din spisrett konto</string>
+    <string name="text_enter_email">Vennligst tast inn din epost adresse</string>
+    <string name="text_confirm_passwor">Bekreft passord</string>
+    <string name="text_create">Opprett </string>
+    <string name="text_alerady_have_acount">Har du allerede en konto</string>
+    <string name="text_login">Logg inn</string>
+    <string name="title_activity_user_login">UserLogin</string>
 
 </resources>

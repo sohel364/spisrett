@@ -122,7 +122,7 @@ public class SpisrettHome extends Activity {
 			}
 		});
 		
-  		((Button)findViewById(R.id.registration_button)).setOnClickListener(new OnClickListener() {
+  		((Button)findViewById(R.id.registration_button_on_home)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
