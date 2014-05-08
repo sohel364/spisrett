@@ -46,20 +46,24 @@
 	     android:gravity="center"
         android:orientation="vertical" >
 	        <EditText
+	            android:id="@+id/edittext_user_name"
 	            android:background="@drawable/shape_oval"
 	            android:layout_height="30dp"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_marginTop ="1dp"
 	            android:textSize="15dp"
+	            android:textColor="@android:color/black"
 	            android:hint="@string/text_user_name"
 	             />
 	        
 	        <EditText
+	            android:id="@+id/edittext_password"
 	            android:background="@drawable/shape_oval"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_marginTop ="1dp"
 	            android:layout_height="30dp"
 	            android:textSize="15dp"
+	            android:textColor="@android:color/black"
 	            android:hint="@string/text_password"
 	            />
 	        
