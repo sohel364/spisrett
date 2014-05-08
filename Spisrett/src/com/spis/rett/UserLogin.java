@@ -1,5 +1,6 @@
 package com.spis.rett;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +20,8 @@ public class UserLogin extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
+				//Intent i = new Intent(getBaseContext(),UserLogin.class);
+				startActivity(new Intent(getApplicationContext(),SpisrettHome.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			}
 		});
 		
@@ -38,5 +40,7 @@ public class UserLogin extends Activity {
 		getMenuInflater().inflate(R.menu.user_login, menu);
 		return true;
 	}
-
+	
+	
+	
 }

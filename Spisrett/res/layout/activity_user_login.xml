@@ -47,9 +47,10 @@
         android:orientation="vertical" >
 	        <EditText
 	            android:background="@drawable/shape_oval"
-	            android:layout_height="wrap_content"
+	            android:layout_height="30dp"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_marginTop ="1dp"
+	            android:textSize="15dp"
 	            android:hint="@string/text_user_name"
 	             />
 	        
@@ -57,7 +58,8 @@
 	            android:background="@drawable/shape_oval"
 	            android:layout_width="@dimen/dimen_registration_layout"
 	            android:layout_marginTop ="1dp"
-	            android:layout_height="wrap_content"
+	            android:layout_height="30dp"
+	            android:textSize="15dp"
 	            android:hint="@string/text_password"
 	            />
 	        
@@ -67,6 +69,7 @@
 	            android:layout_height="30dp"
 	            android:background="@color/color_button_green"
 	            android:layout_marginTop="10dp"
+	            android:gravity="center_horizontal"
 	            android:text="@string/text_login"
 	             />
 

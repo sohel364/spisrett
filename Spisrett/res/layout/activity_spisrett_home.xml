@@ -99,12 +99,7 @@
 				android:textSize="15dp"
                 android:text="Search product or with barcode" />
             
-            <Button 
-                android:id="@+id/registration_button_on_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Register "
-                />
+
   		 </LinearLayout>
 
         

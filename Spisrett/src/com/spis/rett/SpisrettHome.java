@@ -122,14 +122,14 @@ public class SpisrettHome extends Activity {
 			}
 		});
 		
-  		((Button)findViewById(R.id.registration_button_on_home)).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent regIn=new Intent(getApplicationContext(), UserRegistrationActivity.class);
-				startActivity(regIn);
-			}
-		});
+//  		((Button)findViewById(R.id.registration_button_on_home)).setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				Intent regIn=new Intent(getApplicationContext(), UserRegistrationActivity.class);
+//				startActivity(regIn);
+//			}
+//		});
 	}
 	
 	

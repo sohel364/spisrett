@@ -19,11 +19,13 @@ public class SplashScreen extends Activity {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(getBaseContext(),SpisrettHome.class);
+				Intent i = new Intent(getBaseContext(),UserLogin.class);
 				startActivity(i);
 				finish();
 			}
 		}, 5*1000);
+        
+        
     }
 
 
