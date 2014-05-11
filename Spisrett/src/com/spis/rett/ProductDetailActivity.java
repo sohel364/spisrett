@@ -1,9 +1,13 @@
 package com.spis.rett;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.spis.rett.model.NutritionInfo;
 import com.spis.rett.model.Product;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,9 +36,11 @@ public class ProductDetailActivity extends Activity {
 	TextView tabText;
 	ImageView imageViewAd;
 	ImageView imageViewColseAd;
-	
 	LinearLayout linearLayout;
 	LinearLayout linearLayoutProductDetail;
+	AddManager addManager;
+	
+	Handler mainHandler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,8 +49,9 @@ public class ProductDetailActivity extends Activity {
 		Intent intent = getIntent();
 		productCode=intent.getStringExtra("PRODUCT_CODE");
 		didYouKnowString="";
-		
-		
+		mainHandler=new Handler();
+		imageViewAd=(ImageView)findViewById(R.id.image_bottom_ad);
+		addManager=new AddManager(imageViewAd, mainHandler);
 		
 		product=new DatabaseManager(getApplicationContext()).getProduct(productCode);
 		if(product!=null)
@@ -78,7 +85,7 @@ public class ProductDetailActivity extends Activity {
 		buttonTab2=(Button)findViewById(R.id.tab_button2);
 		tabText=(TextView)findViewById(R.id.tab_text);
 		imageViewColseAd=(ImageView)findViewById(R.id.imageview_ad_close);
-		imageViewAd=(ImageView)findViewById(R.id.image_bottom_ad);
+		
 		linearLayoutProductDetail=(LinearLayout)findViewById(R.id.linear_product_info);
 		
 		buttonTabNutrition.setOnClickListener(new OnClickListener() {
@@ -223,9 +230,15 @@ public class ProductDetailActivity extends Activity {
 	
 	@Override
 	protected void onResume() {
+		addManager.showRandomAd();
 		super.onResume();
 	}
 	
+	@Override
+	protected void onPause() {
+		addManager.stopShowingAd();
+		super.onPause();
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.product_detail, menu);

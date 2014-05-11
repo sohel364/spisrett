@@ -3,11 +3,16 @@ package com.spis.rett;
 
 
 
+import java.io.File;
+import java.io.IOException;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import com.spis.rett.model.Product;
 
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -21,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class SpisrettHome extends Activity {
 
@@ -30,7 +36,8 @@ public class SpisrettHome extends Activity {
 	Button buttonBrowse;
 	ImageView imageViewAd;
 	ImageView imageViewColseAd;
-	
+	Handler mainHandler;
+	AddManager addManager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,8 +50,9 @@ public class SpisrettHome extends Activity {
   		buttonBrowse=(Button)findViewById(R.id.btnBrows);
   		imageViewColseAd=(ImageView)findViewById(R.id.imageview_ad_close);
 		imageViewAd=(ImageView)findViewById(R.id.image_bottom_ad);
-		
-  		addDemoProduct("1234");
+		mainHandler=new Handler();
+		addManager=new AddManager(imageViewAd, mainHandler);
+  		addOfflineProductFromXml();
 		
   		imgbtSearchBarcode.setOnClickListener(new OnClickListener() {
 			
@@ -156,54 +164,69 @@ public class SpisrettHome extends Activity {
 		}
 	}
 	
-	private void addDemoProduct(String code)
+	private void addOfflineProductFromXml()
 	{
-		deleteDatabase(SpisrettSqliteHelper.DATABASE_NAME);
 		
-		DatabaseManager databaseManager=new DatabaseManager(getApplication());
+//		deleteDatabase(SpisrettSqliteHelper.DATABASE_NAME);
 		
-//		Hovedkategori	Produkttype	 Produsent	Merke(br)	Sub kategori	Størrelse/Smak
-//1		Meieri(Diary)	Melk(Milk)	 Tine		Ekstra Lett	Melk	1,75 liter
-//11	Pålegg 	Makrell	Stabburet	Grovhakket filet i tomatsaus	Makrell	110 g	It contains Omega3 4,7g  EPA 1,1  DHA 1,9  
-//20	Pålegg 	Storfe & svin	Gilde	Servelat		100 g
-//69	Pizza	Pizza	Stabburet	Grandiosa	Pizza	Pepperoni -500 g
-//77	Meieri(Diary)	Smør	Mills	Vita hjetego	Bordmargarin	Lett- 400 g
-
-
 		
-		Product product1=new Product( "Meieri(Diary)", "Melk", "Melk(Milk)", "Ekstra Lett", "Tine", "", 90,"product1",
-				"http://www.tine.no/produkter/melk/melk/tinemelk-ekstra-lett",null,38, "7038010000911");
+		    File dbFile = this.getDatabasePath(SpisrettSqliteHelper.DATABASE_NAME);
+		    if(dbFile.exists())
+		    {
+		    	return;
+		    }
 		
-		Product product2=new Product( "Pålegg", "Makrell", "Makrell", "Grovhakket filet i tomatsaus", "Stabburet", "", 75,"product2"
-				,"It contains Omega3 4,7g  EPA 1,1  DHA 1,9 ",null,242, "7039010016285");
+		ReadExcelFile readExcelFile=new ReadExcelFile(getApplication());
+		readExcelFile.setInputFile(Environment.getExternalStorageDirectory()+"/Database.xls");
+		try {
+			readExcelFile.read();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
-		Product product3=new Product( "Pålegg", "Makrell", "Storfe & svin", "", "Gilde", "Servelat", 60,"product2",
-				"",null,235, "7037204745027");
-		Product product4=new Product( "Pizza", "Pizza", "Pizza", "", "Grandiosa", "Stabburet", 60,"product1",
-				"",null,245, "7039010019828");
-		Product product5=new Product( "Meieri(Diary)", "Bordmargarin", "Smør", "", "Vita hjetego", "Mills", 50,"product1",
-				"",null,360, "7036110002989");
-		
-		Product product6=new Product( "Meieri(Diary)", "Bordmargarin", "Smør", "", "Vita hjetego", "Mills", 50,"product1",
-				null,null,360, "1");
-		
-		String[] nutritionName={"Protein","Karbohydrater","	Fett","	Mettet","	Trans","Enumettet","Flerumettet	Kolesterol","Stivelse","Sukker",
-				"	Sammalt ","	Tilsatt sukker","	Kostfiber","	Retinol	Beta-karoten","Vitamin A","	Vitamin D	"," Vitamin E","	Tiamin	",
-				"Riboflavin ","	Niacin","	Vitamin B6","	Folat","	Vitamin B12","Vitamin C","	Kalsium	Jern","	Natrium	Kalium","	Magnesium",
-				"	Sink","	Selen	","Kobber","	Fosfor","	Jod	Salt"};
-
-		Log.i("xZing",databaseManager.addProduct(product1)+"");
-		Log.i("xZing",databaseManager.addProduct(product2)+"");
-		Log.i("xZing",databaseManager.addProduct(product3)+"");
-		Log.i("xZing",databaseManager.addProduct(product4)+"");
-		Log.i("xZing",databaseManager.addProduct(product5)+"");
-		Log.i("xZing",databaseManager.addProduct(product6)+"");
-		
-		int[] prductIds ={1,  	 	1, 		 1,  		2	,	2	,	2  ,	2 ,		2 ,    3,	3,	  3,	3,5,  	5, 		 5,  		4	,	4	,	4  ,	6 ,		6 };
-		int[] nuIds		={4,   		5,  	 6, 		1	,	2	,	3  ,	4 ,		5,		1, 	3,	  5,	4,4,   		5,  	 6, 		1	,	2	,	3  ,	4 ,		5};
-		double[] amounts ={ 10.5,     11,	0.5,		1   ,	5   ,	11 ,	25 ,	75 , 	5,	10,	  11.5,	17 ,10.5,     11,	0.5,		1   ,	5   ,	11 ,	25 ,	75 };
-		
-		databaseManager.addNutrition(nutritionName, prductIds, nuIds, amounts);
+////		Hovedkategori	Produkttype	 Produsent	Merke(br)	Sub kategori	Størrelse/Smak
+////1		Meieri(Diary)	Melk(Milk)	 Tine		Ekstra Lett	Melk	1,75 liter
+////11	Pålegg 	Makrell	Stabburet	Grovhakket filet i tomatsaus	Makrell	110 g	It contains Omega3 4,7g  EPA 1,1  DHA 1,9  
+////20	Pålegg 	Storfe & svin	Gilde	Servelat		100 g
+////69	Pizza	Pizza	Stabburet	Grandiosa	Pizza	Pepperoni -500 g
+////77	Meieri(Diary)	Smør	Mills	Vita hjetego	Bordmargarin	Lett- 400 g
+//
+//
+//		
+//		Product product1=new Product( "Meieri(Diary)", "Melk", "Melk(Milk)", "Ekstra Lett", "Tine", "", 90,"product1",
+//				"http://www.tine.no/produkter/melk/melk/tinemelk-ekstra-lett",null,38, "7038010000911");
+//		
+//		Product product2=new Product( "Pålegg", "Makrell", "Makrell", "Grovhakket filet i tomatsaus", "Stabburet", "", 75,"product2"
+//				,"It contains Omega3 4,7g  EPA 1,1  DHA 1,9 ",null,242, "7039010016285");
+//		
+//		Product product3=new Product( "Pålegg", "Makrell", "Storfe & svin", "", "Gilde", "Servelat", 60,"product2",
+//				"",null,235, "7037204745027");
+//		Product product4=new Product( "Pizza", "Pizza", "Pizza", "", "Grandiosa", "Stabburet", 60,"product1",
+//				"",null,245, "7039010019828");
+//		Product product5=new Product( "Meieri(Diary)", "Bordmargarin", "Smør", "", "Vita hjetego", "Mills", 50,"product1",
+//				"",null,360, "7036110002989");
+//		
+//		Product product6=new Product( "Meieri(Diary)", "Bordmargarin", "Smør", "", "Vita hjetego", "Mills", 50,"product1",
+//				null,null,360, "1");
+//		
+//		String[] nutritionName={"Protein","Karbohydrater","	Fett","	Mettet","	Trans","Enumettet","Flerumettet	Kolesterol","Stivelse","Sukker",
+//				"	Sammalt ","	Tilsatt sukker","	Kostfiber","	Retinol	Beta-karoten","Vitamin A","	Vitamin D	"," Vitamin E","	Tiamin	",
+//				"Riboflavin ","	Niacin","	Vitamin B6","	Folat","	Vitamin B12","Vitamin C","	Kalsium	Jern","	Natrium	Kalium","	Magnesium",
+//				"	Sink","	Selen	","Kobber","	Fosfor","	Jod	Salt"};
+//
+//		Log.i("xZing",databaseManager.addProduct(product1)+"");
+//		Log.i("xZing",databaseManager.addProduct(product2)+"");
+//		Log.i("xZing",databaseManager.addProduct(product3)+"");
+//		Log.i("xZing",databaseManager.addProduct(product4)+"");
+//		Log.i("xZing",databaseManager.addProduct(product5)+"");
+//		Log.i("xZing",databaseManager.addProduct(product6)+"");
+//		
+//		int[] prductIds ={1,  	 	1, 		 1,  		2	,	2	,	2  ,	2 ,		2 ,    3,	3,	  3,	3,5,  	5, 		 5,  		4	,	4	,	4  ,	6 ,		6 };
+//		int[] nuIds		={4,   		5,  	 6, 		1	,	2	,	3  ,	4 ,		5,		1, 	3,	  5,	4,4,   		5,  	 6, 		1	,	2	,	3  ,	4 ,		5};
+//		double[] amounts ={ 10.5,     11,	0.5,		1   ,	5   ,	11 ,	25 ,	75 , 	5,	10,	  11.5,	17 ,10.5,     11,	0.5,		1   ,	5   ,	11 ,	25 ,	75 };
+//		
+//		databaseManager.addProductNutrition(nutritionName, prductIds, nuIds, amounts);
 	}
 
 	@Override
@@ -211,5 +234,15 @@ public class SpisrettHome extends Activity {
 		getMenuInflater().inflate(R.menu.spisrett_home, menu);
 		return true;
 	}
-
+	
+	@Override
+	protected void onResume() {
+		addManager.showRandomAd();
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		addManager.stopShowingAd();
+		super.onPause();
+	}
 }

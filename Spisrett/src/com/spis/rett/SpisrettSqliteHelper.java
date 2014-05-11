@@ -71,7 +71,8 @@ public class SpisrettSqliteHelper extends SQLiteOpenHelper
 			+COLUMN_NUTRITION_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , "
 			+COLUMN_NUTRITION_NAME
-			+ " text "
+			+ " text ,"
+			+"CONSTRAINT \"nut\" UNIQUE (\""+COLUMN_NUTRITION_NAME+"\")"
 			+");";
 	
 	private static final String DATABASE_CREATE_TABLE_PRODUCTvsNUTRITION= "create table "+ TABLE_NAME_PRODUCTvsNUTRITION + "(" 

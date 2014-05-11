@@ -7,6 +7,7 @@ import com.spis.rett.model.search.Child;
 import com.spis.rett.model.search.Parent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
@@ -33,8 +34,9 @@ public class SearchReasult  extends  Activity
     private int ParentClickStatus=-1;
     private int ChildClickStatus=-1;
     private ArrayList<Parent> parents;
-    
+    ImageView imageViewAd;
     ExpandableListView expandableListView;
+    AddManager addManager;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -59,9 +61,11 @@ public class SearchReasult  extends  Activity
         // Adding ArrayList data to ExpandableListView values
         loadHosts(dummyList);
         
+        
         ImageButton imgbtSearchBarcode; 
         imgbtSearchBarcode= (ImageButton)findViewById(R.id.image_button1);
-        
+        imageViewAd=(ImageView)findViewById(R.id.image_bottom_ad);
+        addManager=new AddManager(imageViewAd, new Handler());
         
         imgbtSearchBarcode.setOnClickListener(new OnClickListener() {
 			
@@ -217,6 +221,16 @@ public class SearchReasult  extends  Activity
 		}
 	}
     
+    @Override
+    protected void onResume() {
+    	addManager.showRandomAd();
+    	super.onResume();
+    }
+    @Override
+    protected void onPause() {
+    	addManager.stopShowingAd();
+    	super.onPause();
+    }
     
     
 }

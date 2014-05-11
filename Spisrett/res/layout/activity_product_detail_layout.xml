@@ -549,7 +549,7 @@
 	    android:id="@+id/image_bottom_ad"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content" 
-	    android:src="@drawable/banner" />
+	     />
 	</LinearLayout>
 	<!-- 
     <ImageView

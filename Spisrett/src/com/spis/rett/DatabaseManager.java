@@ -1,5 +1,6 @@
 package com.spis.rett;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 
@@ -48,27 +49,23 @@ public class DatabaseManager {
 	    values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_CODE, product.getProductBarCode());
 
 
-	    open();
+//	    open();
 	    
 	    long insertId =  database.insert(SpisrettSqliteHelper.TABLE_NAME_PRODUCT, null,
 	        values);
-	    close();
+//	    close();
 	    return insertId;
 	   
 	  }
 	  
-	  public void addNutrition(String[] nutritionNames,int[] productId,int[] nutritionId,double[] amount)
+	  public void addProductNutrition(String[] nutritionNames,int[] productId,int[] nutritionId,double[] amount)
 	  {
 		  ContentValues  values ;
 		  open();
 		  for(String nutName:nutritionNames)
 		  {
-			  values = new ContentValues();
-			  values.put(SpisrettSqliteHelper.COLUMN_NUTRITION_NAME,nutName);
+			  addNutritions(0,nutName);
 			  
-			  database.insert(SpisrettSqliteHelper.TABLE_NAME_NUTRITION, null,
-				        values);
-			 
 		  }
 		  
 		  
@@ -86,6 +83,35 @@ public class DatabaseManager {
 		 }
 		 close();
 		  
+	  }
+	  public void addProductNutrition(int productId,int nutritionId,double amount)
+	  {
+		  ContentValues  values ;
+//		  open();
+		  values = new ContentValues();
+		  values.put(SpisrettSqliteHelper.COLUMN_PRODUCT_ID, productId);
+			 values.put(SpisrettSqliteHelper.COLUMN_NUTRITION_ID, nutritionId);
+			 values.put(SpisrettSqliteHelper.COLUMN_PRODUCTvsNUTRITION_AMOUNT, amount);
+			 database.insert(SpisrettSqliteHelper.TABLE_NAME_PRODUCTvsNUTRITION, null,
+				        values);
+//		close();
+	  }
+	  
+	  public void addNutritions(int i,String nutrition)
+	  {
+		  ContentValues  values ;
+//		  open();
+	
+			  values = new ContentValues();
+			  if(i!=0)
+			  {
+				  values.put(SpisrettSqliteHelper.COLUMN_NUTRITION_ID, i);
+			  }
+			  values.put(SpisrettSqliteHelper.COLUMN_NUTRITION_NAME,nutrition);
+			  database.insert(SpisrettSqliteHelper.TABLE_NAME_NUTRITION, null,
+				        values);
+//		close();
+
 	  }
 	  
 	  public Product getProduct(String barCode)
@@ -123,6 +149,7 @@ public class DatabaseManager {
 			    		cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getString(8),cursor.getString(9), getProductNutrition(productId),cursor. getInt(10),cursor.getString(11));
 		    	
 		    }
+		    cursor.close();
 		    close();
 		    return product;
 	  }
@@ -155,7 +182,7 @@ public class DatabaseManager {
 			  }
 			 nutritionInfo=new NutritionInfo(nutritionNames, nutirionAmounts);
 		  }
-		  
+		  cursor.close();
 		  close();
 		  return nutritionInfo;
 	  }
@@ -169,6 +196,7 @@ public class DatabaseManager {
 		  {
 			  cursor.moveToFirst();
 			  String s= cursor.getString(0);
+			  cursor.close();
 			  return s;
 		  }
 		  return null;
@@ -216,7 +244,7 @@ public class DatabaseManager {
 			  }
 			
 		  }
-		  
+		  cursor.close();
 		  close();
 		  return products;
 	  }
@@ -237,4 +265,47 @@ public class DatabaseManager {
 		    close();
 		    return insertId;
 	  }
+	 
+	  /* Only to inset data at first time run from the given execl file
+	   * 
+	   * 
+	   * */
+	  public void addOfflineData(String[] nutrition,String[][] value,float nutricats[][])
+	  {
+		  int dataLimit=50;
+		  open();
+			for (int i = 0; i < nutrition.length; i++) {
+					addNutritions(i+1, nutrition[i]);
+			}
+				
+		     Product product;
+			
+			for (int i = 0; i < dataLimit; i++) {
+				
+			product=new Product(value[i][1], value[i][5], value[i][2], value[i][4], value[i][3],value[i][6], 1,i+1+".png",
+					value[i][7], null, value[i][9]==null?0:Integer.parseInt( value[i][9]), value[i][8]);
+		
+			
+			addProduct(product);
+			}
+
+			int j;
+			for (int i = 0; i < dataLimit; i++) {
+				Log.i(" inserting "," "+(i+1 ));
+				for(j=0;j<39;j++)
+				{
+					if(nutricats[i][j]==0)
+						continue;
+					addProductNutrition(i+1, j+1, nutricats[i][j]);
+				}
+			
+			}
+			
+
+	        close();
+	
+		  
+	  }
+	  
+	  
 	} 

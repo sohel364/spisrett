@@ -50,9 +50,8 @@ public class UserLogin extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//Intent i = new Intent(getBaseContext(),UserLogin.class);
 				new LongOperation().execute("");
-				startActivity(new Intent(getApplicationContext(),SpisrettHome.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+				
 			}
 		});
 		
@@ -118,6 +117,7 @@ public class UserLogin extends Activity {
 					@Override
 					public void run() {
 						 Toast.makeText(getApplicationContext(), "Login Successfull", Toast.LENGTH_LONG).show();
+						 startActivity(new Intent(getApplicationContext(),SpisrettHome.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 					}
 				});
 	        	 
@@ -128,7 +128,7 @@ public class UserLogin extends Activity {
 						
 						@Override
 						public void run() {
-							 Toast.makeText(getApplicationContext(), "Login UnSuccessfull", Toast.LENGTH_LONG).show();
+							 Toast.makeText(getApplicationContext(), "Login UnSuccessfull Incorrect Usernmae or Password", Toast.LENGTH_LONG).show();
 						}
 					});
 	          }
@@ -143,9 +143,7 @@ public class UserLogin extends Activity {
 	        }
 	        
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
 	    }
 	} 
 
